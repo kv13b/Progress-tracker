@@ -29,7 +29,14 @@ const WeekendTitle = styled(WeekdayTitle)`
   border-radius: 7px 0 0 7px;
 `;
 const ProgressBar = styled.div`
-  background-color: red;
+  background-color: ${({ progress }) => {
+    let numeric = progress.slice(0, -1);
+    let Integer = parseInt(numeric);
+    if (Integer >= 80) return "red";
+    else if (Integer >= 60) return "orange";
+    else if (Integer >= 40) return "yellow";
+    else return "green";
+  }};
   height: 50px;
   width: ${({ progress }) => progress || "0%"};
 `;
